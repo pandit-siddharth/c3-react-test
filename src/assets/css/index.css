@@ -71,6 +71,14 @@ img {
   cursor: pointer;
 }
 
+.duplicate-label {
+  font-size: 22px;
+  font-weight: bold;
+  color: #337ab7;
+  padding-top: 20px;
+  position: relative;
+}
+
 h1 {
   color: #007FA3;
   font-size: 36px;
