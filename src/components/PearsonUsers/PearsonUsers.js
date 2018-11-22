@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Users } from "../User/Users";
-import { users as defaultUsers } from "../../users"
+import { avatars as defaultAvatars } from "../../avatars"
 import { config } from "../../config"
 import axios from "axios";
 
@@ -9,7 +9,7 @@ export class PearsonUsers extends Component {
     super(props);
 
     this.state = {
-      users: defaultUsers,
+      users: defaultAvatars,
       error: ''
     };
   }
@@ -33,7 +33,7 @@ export class PearsonUsers extends Component {
   deleteDuplicates(e) {
     e.preventDefault();
     const userList = this.state.users.reduce((userArr, user) =>
-      userArr.findIndex(elem => elem.first_name + elem.last_name === user.first_name + user.last_name) < 0 ?
+      userArr.findIndex(elem => elem.id === user.id) < 0 ?
         [...userArr, user] : userArr, []);
     this.setState({
       users: userList,
@@ -58,7 +58,7 @@ export class PearsonUsers extends Component {
                 {this.state.deletedCount > 0 ?
                   <div>{this.state.deletedCount} duplicate users deleted !</div>
                   :
-                  <div>No duplicate users !</div>}
+                  <div>No duplicate users found !</div>}
               </div>
               :
               <div></div>}
