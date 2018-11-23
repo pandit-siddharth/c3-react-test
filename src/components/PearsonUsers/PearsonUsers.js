@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormattedMessage } from 'react-intl';
 import { Users } from "../User/Users";
 import { avatars as defaultAvatars } from "../../avatars"
 import { config } from "../../config"
@@ -53,16 +54,17 @@ export class PearsonUsers extends Component {
   render() {
     return (
       <div className="pearson-users">
-        <h1>Pearson User Management</h1>
+        <h1><FormattedMessage id="app.title" defaultMessage={`Pearson User Management`} /></h1>
         {this.state.error === '' && this.state.users && this.state.users.length >= 0 ?
           <React.Fragment>
-            <a className="btn-delete" href="" onClick={(e) => this.deleteDuplicates(e)} >Delete Duplicate Users</a>
+            <a className="btn-delete" href="" onClick={(e) => this.deleteDuplicates(e)} >
+              <FormattedMessage id="app.deleteUsers" defaultMessage={`Delete Duplicate Users`} /></a>
             {this.state.deletedCount !== undefined ?
               <div className="duplicate-label">
                 {this.state.deletedCount > 0 ?
-                  <div>{this.state.deletedCount} duplicate users deleted !</div>
+                  <div>{this.state.deletedCount} <FormattedMessage id="app.deleted" defaultMessage={`duplicate users deleted`} /> !</div>
                   :
-                  <div>No duplicate users found !</div>}
+                  <div><FormattedMessage id="app.noDuplicates" defaultMessage={`No duplicate users found`} /> !</div>}
               </div>
               :
               <div></div>
@@ -76,7 +78,7 @@ export class PearsonUsers extends Component {
           :
           <React.Fragment>
             {this.state.error === '' ?
-              <div className="page-loading">Fetching user profiles..</div>
+              <div className="page-loading"><FormattedMessage id="app.fetching" defaultMessage={`Fetching user profiles..`} /></div>
               :
               <Error errMsg={this.state.error} />
             }

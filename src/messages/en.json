@@ -1,0 +1,12 @@
+{
+    "app.title": "Pearson User ",
+    "app.deleteUsers": "Delete Duplicate Users",
+    "app.deleted": "duplicate users deleted",
+    "app.noDuplicates": "No duplicate users found",
+    "app.fetching": "Fetching user profiles..",
+    "app.delete": "Delete",
+    "app.errTitle": "Oops",
+    "app.errMessage": "Something went wrong",
+    "app.errDetails": "Error details",
+    "app.goto": "Go to Homepage"
+}
