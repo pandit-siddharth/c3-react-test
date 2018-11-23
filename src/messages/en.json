@@ -1,5 +1,5 @@
 {
-    "app.title": "Pearson User ",
+    "app.title": "Pearson User Management",
     "app.deleteUsers": "Delete Duplicate Users",
     "app.deleted": "duplicate users deleted",
     "app.noDuplicates": "No duplicate users found",
