@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Users } from "../User/Users";
 import { avatars as defaultAvatars } from "../../avatars"
 import { config } from "../../config"
+import { Error } from "../Error/Error"
 import axios from "axios";
 
 export class PearsonUsers extends Component {
@@ -17,9 +18,12 @@ export class PearsonUsers extends Component {
   componentDidMount() {
     axios.get(config.apiUrl)
       .then(response => {
-        let userData = response.data;
+        let userData = this.state.users;
+        if (response.data && response.data.data) {
+          userData = userData.concat(response.data.data);
+        }
         this.setState({
-          users: this.state.users.concat(userData.data)
+          users: userData
         });
       })
       .catch(error => {
@@ -50,7 +54,7 @@ export class PearsonUsers extends Component {
     return (
       <div className="pearson-users">
         <h1>Pearson User Management</h1>
-        {this.state.users && this.state.users.length >= 0 ?
+        {this.state.error === '' && this.state.users && this.state.users.length >= 0 ?
           <React.Fragment>
             <a className="btn-delete" href="" onClick={(e) => this.deleteDuplicates(e)} >Delete Duplicate Users</a>
             {this.state.deletedCount !== undefined ?
@@ -61,12 +65,11 @@ export class PearsonUsers extends Component {
                   <div>No duplicate users found !</div>}
               </div>
               :
-              <div></div>}
+              <div></div>
+            }
             <div className="user-row">
-              {this.state.users.map((data) => {
-                return (
-                  <Users data={data} key={data.id} deleteUser={(e) => this.deleteUser(e, data)} />
-                )
+              {this.state.users.map((data, index) => {
+                return <Users data={data} key={index} deleteUser={(e) => this.deleteUser(e, data)} />
               })}
             </div>
           </React.Fragment>
@@ -75,7 +78,8 @@ export class PearsonUsers extends Component {
             {this.state.error === '' ?
               <div className="page-loading">Fetching user profiles..</div>
               :
-              <div className="error-screen">{this.state.error}</div>}
+              <Error errMsg={this.state.error} />
+            }
           </React.Fragment>
         }
       </div>

@@ -1,0 +1,104 @@
+
+#error-screen {
+    color: #007FA3;
+    font-size: 15px;
+    position: relative;
+    height: 70vh;
+  }
+  
+  #error-screen .error-screen {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  
+  .error-screen {
+    max-width: 520px;
+    width: 100%;
+    line-height: 1.4;
+    text-align: center;
+  }
+  
+  .error-screen .error-screen-msg {
+    position: relative;
+    height: 190px;
+    margin: 0px auto 20px;
+    z-index: -1;
+  }
+  
+  .error-screen .error-screen-msg h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 180px;
+    font-weight: 200;
+    margin: 0px;
+    color: #211b19;
+    text-transform: uppercase;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  
+  .error-screen .error-screen-msg h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #211b19;
+    background: #fff;
+    padding: 10px 5px;
+    margin: auto;
+    display: inline-block;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+  }
+  
+  .error-screen a {
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block;
+    font-weight: 700;
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 13px 23px;
+    background: #ff6300;
+    font-size: 18px;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+  }
+  
+  .error-screen a:hover {
+    color: #ff6300;
+    background: #211b19;
+  }
+  
+  @media only screen and (max-width: 767px) {
+    .error-screen .error-screen-msg h1 {
+      font-size: 148px;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .error-screen .error-screen-msg {
+      height: 148px;
+      margin: 0px auto 10px;
+    }
+    .error-screen .error-screen-msg h1 {
+      font-size: 86px;
+    }
+    .error-screen .error-screen-msg h2 {
+      font-size: 16px;
+    }
+    .error-screen a {
+      padding: 7px 15px;
+      font-size: 14px;
+    }
+  }
+  

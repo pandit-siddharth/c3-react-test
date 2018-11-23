@@ -46,11 +46,6 @@ img {
   margin-top: 25px;
 }
 
-.error-screen {
-  color: #007FA3;
-  font-size: 24px;
-}
-
 .page-loading {
   position: absolute;
 	width: 100%;
