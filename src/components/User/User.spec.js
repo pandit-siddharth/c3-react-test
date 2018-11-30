@@ -1,23 +1,23 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { Users } from "./Users";
+import { User } from "./User";
 
 const data = {id: 1, first_name: "Janet", last_name: "Weaver", avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"};
 const deleteUser = jest.fn();
 const key = 6;
 
-describe('Inside Users', () => {
+describe('Inside User', () => {
     const setup = () => shallow(
-    <Users
+    <User
       data={data}
       key={key}
       deleteUser={deleteUser}
     />
   );
 
-  it('should define Users Component', () => {
+  it('should define User Component', () => {
     const wrapper = setup();
-    expect(wrapper.find('Users')).toBeDefined();
+    expect(wrapper.find('User')).toBeDefined();
   });
 
   it('should define props', () => {

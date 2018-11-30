@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FormattedMessage } from 'react-intl';
-import { Users } from "../User/Users";
+import { User } from "../User/User";
 import { avatars as defaultAvatars } from "../../avatars"
 import { config } from "../../config"
 import { Error } from "../Error/Error"
@@ -21,7 +21,7 @@ export class PearsonUsers extends Component {
       .then(response => {
         let userData = this.state.users;
         if (response.data && response.data.data) {
-          userData = userData.concat(response.data.data);
+          userData = [...userData, ...response.data.data];
         }
         this.setState({
           users: userData
@@ -37,12 +37,13 @@ export class PearsonUsers extends Component {
 
   deleteDuplicates(e) {
     e.preventDefault();
-    const userList = this.state.users.reduce((userArr, user) =>
+    const origUserList = this.state.users;
+    const userList = origUserList.reduce((userArr, user) =>
       userArr.findIndex(elem => elem.id === user.id) < 0 ?
         [...userArr, user] : userArr, []);
     this.setState({
       users: userList,
-      deletedCount: this.state.users.length - userList.length
+      deletedCount: origUserList.length - userList.length
     });
   }
 
@@ -52,17 +53,18 @@ export class PearsonUsers extends Component {
   }
 
   render() {
+    const { users, error, deletedCount } = this.state;
     return (
       <div className="pearson-users">
         <h1><FormattedMessage id="app.title" defaultMessage={`Pearson User Management`} /></h1>
-        {this.state.error === '' && this.state.users && this.state.users.length >= 0 ?
+        {error === '' && users && users.length >= 0 ?
           <React.Fragment>
             <a className="btn-delete" href="" onClick={(e) => this.deleteDuplicates(e)} >
               <FormattedMessage id="app.deleteUsers" defaultMessage={`Delete Duplicate Users`} /></a>
-            {this.state.deletedCount !== undefined ?
+            {deletedCount !== undefined ?
               <div className="duplicate-label">
-                {this.state.deletedCount > 0 ?
-                  <div>{this.state.deletedCount} <FormattedMessage id="app.deleted" defaultMessage={`duplicate users deleted`} /> !</div>
+                {deletedCount > 0 ?
+                  <div>{deletedCount} <FormattedMessage id="app.deleted" defaultMessage={`duplicate users deleted`} /> !</div>
                   :
                   <div><FormattedMessage id="app.noDuplicates" defaultMessage={`No duplicate users found`} /> !</div>}
               </div>
@@ -70,17 +72,17 @@ export class PearsonUsers extends Component {
               <div></div>
             }
             <div className="user-row">
-              {this.state.users.map((data, index) => {
-                return <Users data={data} key={index} deleteUser={(e) => this.deleteUser(e, data)} />
+              {users.map((data, index) => {
+                return <User data={data} key={index} deleteUser={(e) => this.deleteUser(e, data)} />
               })}
             </div>
           </React.Fragment>
           :
           <React.Fragment>
-            {this.state.error === '' ?
+            {error === '' ?
               <div className="page-loading"><FormattedMessage id="app.fetching" defaultMessage={`Fetching user profiles..`} /></div>
               :
-              <Error errMsg={this.state.error} />
+              <Error errMsg={error} />
             }
           </React.Fragment>
         }

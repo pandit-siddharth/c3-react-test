@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 
-export class Users extends Component {
+export class User extends Component {
   render() {
     return (
       <div className="user-column" >
@@ -15,12 +15,12 @@ export class Users extends Component {
   }
 }
 
-Users.defaultProps = {
+User.defaultProps = {
   data: {},
   deleteUser: () => { }
 };
 
-Users.propTypes = {
+User.propTypes = {
   data: PropTypes.object,
   deleteUser: PropTypes.func
 };
